@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+        integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+        crossorigin="anonymous" />
+    <title>URL short</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="six columns">
+                <h3>URL List:</h3>
+                {% for url in urls %}
+                <p>{{ url.url }}:</p>
+                <p><a href="/{{ url.url_hash }}/">http://localhost:8000/{{ url.url_hash }}</a></p>
+                {% endfor %}
+            </div>
+            <div class="six columns">
+                <h3>Create a shortcut:</h3>
+                <form action="/postUrl/" method="POST">
+                    <input class="u-full-width" name="link" type="text" id="link">
+                    <input type="submit" value="submit">
+                    {% csrf_token %}
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
